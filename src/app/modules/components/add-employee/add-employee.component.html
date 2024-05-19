@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="inputs-container">
+    <h1>Employee Detail</h1>
+    <form [formGroup]="employeeForm" (ngSubmit)="addEmployee()">
+      <mat-form-field appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="firstName" placeholder="Enter First Name">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lastName" placeholder="Enter Last Name">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Type</mat-label>
+        <mat-select formControlName="typeEmployee" placeholder="Select Type">
+          <mat-option *ngFor="let type of typeOption; let i = index" [value]="type">{{ typeOptions[i] }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>TZ</mat-label>
+        <input matInput formControlName="tz" placeholder="Enter TZ">
+        <mat-error *ngIf="employeeForm?.get('tz')?.errors?.['required']">TZ is required</mat-error>
+        <mat-error *ngIf="employeeForm?.get('tz')?.errors?.['invalidTZ']">Invalid TZ (must be 9 digits)</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Start Work</mat-label>
+        <input matInput [matDatepicker]="startWorkPicker" formControlName="startWork" placeholder="Enter Start Work">
+        <mat-datepicker-toggle matSuffix [for]="startWorkPicker"></mat-datepicker-toggle>
+        <mat-datepicker #startWorkPicker></mat-datepicker>
+        <mat-error *ngIf="employeeForm?.get('startWork')?.errors?.['required']">Start Work is required</mat-error>
+        <mat-error *ngIf="employeeForm?.get('startWork')?.errors?.['invalidStartWork']">Start Work must be equal to or before the earliest date in roles</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Birth Date</mat-label>
+        <input matInput [matDatepicker]="birthDatePicker" formControlName="birthDate" placeholder="Enter Birth Date">
+        <mat-datepicker-toggle matSuffix [for]="birthDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #birthDatePicker></mat-datepicker>
+      </mat-form-field>
+     
+      
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="employeeForm.invalid">Save all to DataBase</button>
+    </form>
+
+   
+
+    <div *ngIf="employee && employee.roles && employee.roles.length">
+      <h2>Employee Roles</h2>
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let role of employee.roles; let i = index">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <p><strong>Name:</strong> {{ roleName[role.name] }}</p>
+            </mat-panel-title>
+            <mat-panel-description>
+              <p><strong>Is Principal:</strong> {{ role.isPrincipal ? 'Yes' : 'No' }}</p>
+              <p><strong>Enter Working:</strong> {{ role.enterWorking | date }}</p>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="role-details">
+          
+            <button mat-raised-button color="primary" (click)="editRole(role, i)">Edit Role</button>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <button mat-fab color="primary"  (click)="addRole()">
+      
+      <img src="/assets/add.png" alt="Add Icon"  style="width: 40px; height: 40px;">
+      add Role
+    </button>
+  </div>
+
+  <div class="picture-container">
+    <img class="background-image" src="/assets/EmployeeDetails.png" alt="Employee Picture">
+  </div>
+
+</div>

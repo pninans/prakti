@@ -1,0 +1,77 @@
+
+<div class="background-container">
+<div class="button-container">
+  <button mat-fab color="primary" class="add-button" (click)="addEmployee()">
+    <img src="/assets/add.png" alt="Add Icon" style="width: 40px; height: 40px;">
+  </button>
+
+  <!-- Button for exporting to Excel -->
+  <button mat-raised-button color="primary" class="add-button" (click)="exportToExcel()">
+   <img src="/assets/excel.png " alt="Excel Icon" style="width: 40px; height: 40px;">
+  </button>
+</div>
+
+  <!-- Search field -->
+  <mat-form-field appearance="outline">
+    <mat-label>Search</mat-label>
+    <input matInput placeholder="Search" [(ngModel)]="searchText" (input)="applyFilter()">
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" class="demo-table">
+ 
+    <!-- Last Name Column -->
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell class="header-cell-bold" *matHeaderCellDef >Last Name</th>
+      <td mat-cell *matCellDef="let element"> {{ element.lastName }} </td>
+    </ng-container>
+     <!-- First Name Column -->
+ <ng-container matColumnDef="firstName">
+      <th mat-header-cell class="header-cell-bold" *matHeaderCellDef >First Name</th>
+      <td mat-cell *matCellDef="let element"> {{ element.firstName }} </td>
+    </ng-container>
+    <!-- Tz Column -->
+    <ng-container matColumnDef="tz">
+      <th mat-header-cell class="header-cell-bold" *matHeaderCellDef>Tz</th>
+      <td mat-cell *matCellDef="let element"> {{ element.tz }} </td>
+    </ng-container>
+
+    <!-- Start Work Column -->
+    <ng-container matColumnDef="startWork">
+      <th mat-header-cell class="header-cell-bold" *matHeaderCellDef>Start Work</th>
+      <td mat-cell *matCellDef="let element"> {{ element.startWork }} </td>
+    </ng-container>
+
+    <!-- Delete Column -->
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell class="header-cell-bold" *matHeaderCellDef>Delete</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button color="warn" (click)="deleteEmployee(element.id)">
+          <!-- Use a trash icon here -->
+          <img src="/assets/trash.png" alt="Delete Icon" style="width: 24px; height: 24px;">
+        </button>
+      </td>
+    </ng-container>
+
+    <!-- Edit Column -->
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell class="header-cell-bold" *matHeaderCellDef>Edit</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button color="warn" (click)="editEmployee(element)">
+          <!-- Use a pencil icon here -->
+          <img src="/assets/pencil.png" alt="Edit Icon" style="width: 24px; height: 24px;">
+        </button>
+      </td>
+    </ng-container>
+
+    <!-- Define the table rows -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns;"
+    ></tr>
+  </table>
+<br>
+<br>
+<br>
+<br>
+</div>

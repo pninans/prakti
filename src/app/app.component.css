@@ -1,0 +1,21 @@
+img{
+    height: 5%;
+    width: 5%;
+}
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #1da4d5;
+    padding: 20px 0;
+    text-align: center;
+    border-top: 1px solid #ccc;
+  }
+  
+  .footer p {
+    margin: 0;
+  }
+  mat-toolbar{
+    background-color: #e0e2e3;
+  }

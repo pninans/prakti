@@ -1,0 +1,24 @@
+mat-card {
+    max-width: 400px;
+    margin: 2em auto;
+    text-align: center;
+    background-color:  #e0e2e3;
+  }
+  
+  mat-form-field {
+    display: block;
+   
+  }
+  .background-container {
+     background-image: url('/assets/Details.png'); 
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center the content vertically */
+    align-items: center; /* Center the content horizontally */
+  
+  }
+  

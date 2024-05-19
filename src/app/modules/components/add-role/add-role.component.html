@@ -1,0 +1,40 @@
+<mat-card>
+    <mat-card-title>Create New Role</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="form">
+        <mat-form-field>
+          <mat-label>Role Name</mat-label>
+          <mat-select formControlName="name" placeholder="Select Role Name">
+            <mat-option *ngFor="let option of roleNameOptions; let i = index" [value]="option">
+              {{ roleNameOptionsdeme[roleNameOptions[i]] }}
+              
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>IsPrincipal</mat-label>
+          <mat-select formControlName="isPrincipal" placeholder="Select isPrincipal">
+            <mat-option *ngFor="let princ of  IsPronc; let i = index" [value]="princ">
+              {{ IsProncdeme[i]}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Enter Working Date</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="enterWorking" placeholder="Enter Working Date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="form?.get('enterWorking')?.errors?.['requiredStartWork']">
+            Please fill in the Start Work date first
+          </mat-error>
+          <mat-error *ngIf="form.get('enterWorking')?.errors?.['invalidEnterWorking']">
+            Enter Working Date must be equal to or later than Start Work date
+          </mat-error>
+          
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="submitForm()" [disabled]="form.invalid">Submit</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  <br>

@@ -1,0 +1,36 @@
+.background-container {
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+  align-items: center; 
+}
+.demo-table th {
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}
+.add-button {
+  margin-bottom: 10%;
+}
+.demo-table {
+  opacity: 0.9;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+ 
+}
+.mat-mdc-row .mat-mdc-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  border-color: currentColor;
+}
+
